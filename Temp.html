@@ -1,0 +1,74 @@
+<meta charset="utf-8">
+<html>
+<body>
+<div id="graph_container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+<script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script>
+
+$(function() {
+  Highcharts.setOptions({
+      global: {
+          useUTC: false
+      }
+  });
+
+  var graph = new Highcharts.Chart({
+      title: { text: 'Monitoreo en tiempo real' },
+      xAxis: {
+          type: 'datetime',
+          tickPixelInterval: 100
+      },
+      yAxis: {
+          title: { text: 'Grados (°C)' },
+          tickInterval: 10,
+          min: 0,
+          max: 50
+      },
+      tooltip: {
+            formatter: function() {
+                return '<b>'+ this.series.name + '</b><br/>'
+                    + '[ ' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x)
+                    + ' , '
+                    + this.y + ' ]';
+            }
+      },
+      chart: {
+          type: 'spline',
+          renderTo: 'graph_container',
+          events: {
+              load: function() {
+                  var series = this.series[0];
+                  var socket = io.connect('http://localhost:3131');
+                  socket.on('sample', function (sample) {
+                      // when a sample arrives we plot it
+                      series.addPoint([sample.x, sample.y], true, true);
+                  });
+              }
+          }
+      },
+        series: [{
+            name: 'Temperatura',
+            data: (function() {
+                // generate some points to render before real samples arrive from feed
+                var data = [],
+                    time = (new Date()).getTime(),
+                    i;
+                // 20 samples, starting 19 ms ago up to present time when feed starts plotting
+                for (i = -19; i <= 0; i++) {
+                    data.push({
+                        x: time + (i * 1000),
+                        y: 0
+                    });
+                }
+                return data;
+            })()
+        }]
+  });
+
+});
+</script>
+</body>
+</html>
