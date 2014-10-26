@@ -1,7 +1,7 @@
 ## Stream Sensor Server
 
 
-Este modulo implementado en Nodejs recive los datos de la app en android y los emite a los clientes, estos seran presentados a los usuarios finales en la plataforma que sera desarollada en Django.
+Este experimento implementado en Nodejs recive los datos de una app en android y los emite a los clientes, estos seran graficados usando Highcharts.
 
 
 
