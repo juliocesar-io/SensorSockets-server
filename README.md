@@ -1,7 +1,9 @@
-## Stream Sensor Server
+## Sensor Sockets Server
 
 
-Este experimento implementado en Nodejs recive los datos de una app en android y los emite a los clientes, estos seran graficados usando Highcharts.
+Este experimento implementado en Nodejs recibe los datos de una app en android, he aqui el [repo](https://github.com/juliocesar-io/SensorSockets_app). Seguidamente se grafican usando Highcharts.
+
+![Imgur](http://i.imgur.com/yvBt9RI.png)
 
 
 

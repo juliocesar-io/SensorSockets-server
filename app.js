@@ -1,14 +1,14 @@
 /**
-Socket recepor del streaming enviado desde la app de android,
+Socket receptor del streaming enviado desde una app en android,
 * encargado de recibir los datos binarios (Buffers) y codificarlos
-* para luego mostrarlos graficados en el navegador con Javascript.
+* para luego graficarlos en el navegador con Javascript.
 *
 * [TODO]
 *    - Investigar formas de tratamiento de datos binarios.
 *    - Indagar sobre la escalabilidad de Sokects.
 *
 * Julio César
-* @uzi200
+* @juliocesar_io
 * 2014
 **/
 
@@ -32,7 +32,7 @@ server = net.createServer(function (socket) {
     console.log("CLIENTE : ",d.red);
     // Luego se hace una conversión a entero para presentarlo al cliente
     out = parseFloat(d);
-    console.log("SERVER  : ".green, out);         
+    console.log("SERVER  : ".green, out);
       //require('util').log(temp.bold.green);
     });
 
@@ -40,21 +40,21 @@ server = net.createServer(function (socket) {
 
 }).listen(8000);
 
-console.log("#######################")
-console.log("Esperando en el puerto:", server.address().port)
-console.log("IP Local:", ip.address())
+console.log("#######################");
+console.log("Esperando en el puerto:", server.address().port);
+console.log("IP Local:", ip.address());
 
 
-  
+
 io.sockets.on('connection', function (socket) {
 
- var max = 100
+ var max = 100;
 
   // Genera una muestra cada segundo
 
     setInterval(function() {
         var x = (new Date()).getTime(), // tiempo actual
-            y = out
+            y = out;
         socket.emit('sample', {
           x: x,
           y: y
