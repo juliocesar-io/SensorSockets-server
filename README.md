@@ -1,7 +1,7 @@
 ## Sensor Sockets Server
 
 
-Este experimento implementado en Nodejs recibe los datos de una app en android, he aqui el [repo](https://github.com/juliocesar-io/SensorSockets_app). Seguidamente se grafican usando Highcharts.
+Este experimento implementado en Nodejs recibe los datos de una app en android, he aqui el [repo](https://github.com/juliocesar-io/SensorSockets_app). Seguidamente se grafican las lecturas usando Highcharts.
 
 ![Imgur](http://i.imgur.com/yvBt9RI.png)
 
